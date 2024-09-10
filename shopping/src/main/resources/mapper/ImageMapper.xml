@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  마이바티스용 xml 매퍼다라고 알려주기 위해서 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.ImageMapper" >
+    <insert id="insertImage" parameterType="domain.ImageVO">
+        INSERT INTO img_table (imgname, nowtime ,joinid)
+        VALUES (#{imgname}, #{nowtime}, #{joinid})
+    </insert>
+    
+    <select id="findByJoinId" resultType="domain.ImageVO">
+		SELECT * FROM img_table WHERE joinid = #{joinid}
+	</select>
+	
+	<select id="findImageById" resultType="domain.ImageVO">
+        SELECT * FROM img_table WHERE id = #{id}
+    </select>
+
+    <delete id="deleteImage">
+        DELETE FROM img_table WHERE id = #{id}
+    </delete>
+</mapper>

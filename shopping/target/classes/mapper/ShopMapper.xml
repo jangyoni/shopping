@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  마이바티스용 xml 매퍼다라고 알려주기 위해서 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ShopMapper">
+    <!-- SQL 매핑 정의 -->
+    
+    <insert id="insert">
+		insert into new_table(title,content,writer) values (#{title},#{content},#{writer})
+	</insert>
+	
+	<select id="read" resultType="domain.ReviewVO">
+		select * from new_table where bno=#{bno} <!-- select만 resultType을 쓴다. -->
+	</select>  
+	
+	<delete id="delete">
+		delete from new_table where bno=#{bno}
+	</delete>
+	
+	<update id="update">
+		UPDATE new_table SET title =#{title}, content = #{content} WHERE bno =#{bno};
+	</update>
+	
+	<update id="lovecount"> 
+	update new_table
+        set luv = luv + 1
+        where bno =#{bno}
+    </update>
+
+	
+	<insert id="signup">
+		insert into user_table(id,name,email,birthday,birthyear,mobile) values (#{id},#{name},#{email},#{birthday},#{birthyear},#{mobile})
+	</insert>
+	
+	<select id="signin" resultType="domain.UserVO">
+        SELECT * FROM user_table WHERE id = #{id}
+    </select>
+    
+    <select id="getList" resultType="domain.ReviewVO">
+        SELECT bno, title, content, writer, regdate ,luv
+        FROM new_table
+        ORDER BY bno DESC
+    </select>
+	
+
+</mapper>
+     
+    
+        

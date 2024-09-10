@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://mybatis.org/schema/mybatis-spring 
+                           http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+
+    <!-- Root Context: defines shared resources visible to all other web components -->
+    <bean id="aaa" class="com.zaxxer.hikari.HikariConfig">
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+        <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/shop?characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+    </bean>
+
+    <bean id="bbb" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="aaa"/>
+    </bean>
+
+    <bean id="ccc" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="bbb"/>
+    </bean>
+
+    <!-- Mybatis용 스캔폴더 -->
+    <mybatis-spring:scan base-package="mapper"/>
+
+    <!-- 검색해야할 패키지 추가 -->
+    <context:component-scan base-package="service"/>
+    <context:component-scan base-package="mapper"/>
+	<context:component-scan base-package="mit.yoni.shopping"/>
+	<context:component-scan base-package="domain"/>
+
+	
+	
+</beans>

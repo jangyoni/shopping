@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  마이바티스용 xml 매퍼다라고 알려주기 위해서 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.AdminMapper">
+ 
+
+<select id="progetList" resultType="domain.ProductVO">
+		SELECT id, protitle, name, description, price ,created_at
+        FROM products
+        ORDER BY id DESC <!-- select만 resultType을 쓴다. -->
+	</select>
+	
+	<select id="proread" resultType="domain.ProductVO">
+		select * from products where id=#{id} <!-- select만 resultType을 쓴다. -->
+	</select> 
+
+		<insert id="productInsert" parameterType="domain.ProductVO" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO products (name, protitle, description, price) 
+    VALUES (#{name}, #{protitle}, #{description}, #{price})
+</insert>
+
+	<delete id="prodelete">
+		delete from products where id=#{id}
+	</delete>
+	
+	<update id="proupdate">
+		UPDATE products SET name =#{name}, protitle = #{protitle} ,description = #{description} , price = #{price}
+		WHERE id = #{id};
+	</update>
+</mapper>
