@@ -373,9 +373,9 @@
                 <img src="/resources/images/banner-img.png" class="img-fluid">
               </div>
               <div class="content-wrapper col-md-7 p-5 mb-5">
-                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                    pets</span>
+                <h2 class="banner-title display-1 fw-normal">Yoni shopping <br>
+                  <span class="text-primary">Mall
+                  </span>
                 </h2>
                 <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                   shop now
